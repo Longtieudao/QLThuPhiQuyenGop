@@ -1,0 +1,581 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QLThuPhiQuyenGopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CanBoQuanLy">
+          <Key>
+            <PropertyRef Name="CanBoQuanLyID" />
+          </Key>
+          <Property Name="CanBoQuanLyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenCanBo" Type="nvarchar" MaxLength="100" />
+          <Property Name="ChucVu" Type="nvarchar" MaxLength="100" />
+          <Property Name="TaiKhoan" Type="nvarchar" MaxLength="100" />
+          <Property Name="MatKhau" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ChiTietQuyenGop">
+          <Key>
+            <PropertyRef Name="ChiTietQuyenGopID" />
+          </Key>
+          <Property Name="ChiTietQuyenGopID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HoGiaDinhQuyenGop" Type="int" />
+          <Property Name="QuyenGopID" Type="int" />
+          <Property Name="HoGiaDinhID" Type="int" />
+          <Property Name="SoTienDongGop" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="HoGiaDinh">
+          <Key>
+            <PropertyRef Name="HoGiaDinhID" />
+          </Key>
+          <Property Name="HoGiaDinhID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenChuHo" Type="nvarchar" MaxLength="100" />
+          <Property Name="SoNhanKhau" Type="int" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="HoGiaDinhQuyenGop">
+          <Key>
+            <PropertyRef Name="HoGiaDinhQuyenGop" />
+          </Key>
+          <Property Name="HoGiaDinhQuyenGop" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuyenGopID" Type="int" />
+          <Property Name="HoGiaDinhID" Type="int" />
+          <Property Name="CanBoQuanLyID" Type="int" />
+          <Property Name="SoTienDongGop" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="QuyenGop">
+          <Key>
+            <PropertyRef Name="QuyenGopID" />
+          </Key>
+          <Property Name="QuyenGopID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenVanDong" Type="int" />
+          <Property Name="NgayVanDong" Type="date" />
+          <Property Name="NgayKetThuc" Type="date" />
+          <Property Name="NoiDung" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="ThongKeQuyenGop">
+          <Key>
+            <PropertyRef Name="ThongKeQuyenGopID" />
+          </Key>
+          <Property Name="ThongKeQuyenGopID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HoGiaDinhQuyenGop" Type="int" />
+          <Property Name="QuyenGopID" Type="int" />
+          <Property Name="HoGiaDinhID" Type="int" />
+          <Property Name="TongSoTienThu" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SoHoDaNop" Type="int" />
+        </EntityType>
+        <EntityType Name="ThongKeThuPhiHangThang">
+          <Key>
+            <PropertyRef Name="ThongKeThuPhiID" />
+          </Key>
+          <Property Name="ThongKeThuPhiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ThuPhiID" Type="int" />
+          <Property Name="NgayVanDong" Type="date" />
+          <Property Name="TongSoTienThu" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SoHoDaNop" Type="int" />
+        </EntityType>
+        <EntityType Name="ThuPhi">
+          <Key>
+            <PropertyRef Name="ThuPhiID" />
+          </Key>
+          <Property Name="ThuPhiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HoGiaDinhID" Type="int" />
+          <Property Name="CanBoQuanLyID" Type="int" />
+          <Property Name="NgayThu" Type="date" />
+          <Property Name="SoTienThuPhi" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <Association Name="FK_ChiTietQuyenGop_HoGiaDinhQuyenGop">
+          <End Role="HoGiaDinhQuyenGop" Type="Self.HoGiaDinhQuyenGop" Multiplicity="0..1" />
+          <End Role="ChiTietQuyenGop" Type="Self.ChiTietQuyenGop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoGiaDinhQuyenGop">
+              <PropertyRef Name="HoGiaDinhQuyenGop" />
+            </Principal>
+            <Dependent Role="ChiTietQuyenGop">
+              <PropertyRef Name="HoGiaDinhQuyenGop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HoGiaDinhQuyenGop_CanBoQuanLy">
+          <End Role="CanBoQuanLy" Type="Self.CanBoQuanLy" Multiplicity="0..1" />
+          <End Role="HoGiaDinhQuyenGop" Type="Self.HoGiaDinhQuyenGop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CanBoQuanLy">
+              <PropertyRef Name="CanBoQuanLyID" />
+            </Principal>
+            <Dependent Role="HoGiaDinhQuyenGop">
+              <PropertyRef Name="CanBoQuanLyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HoGiaDinhQuyenGop_HoGiaDinh">
+          <End Role="HoGiaDinh" Type="Self.HoGiaDinh" Multiplicity="0..1" />
+          <End Role="HoGiaDinhQuyenGop" Type="Self.HoGiaDinhQuyenGop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoGiaDinh">
+              <PropertyRef Name="HoGiaDinhID" />
+            </Principal>
+            <Dependent Role="HoGiaDinhQuyenGop">
+              <PropertyRef Name="HoGiaDinhID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HoGiaDinhQuyenGop_QuyenGop">
+          <End Role="QuyenGop" Type="Self.QuyenGop" Multiplicity="0..1" />
+          <End Role="HoGiaDinhQuyenGop" Type="Self.HoGiaDinhQuyenGop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuyenGop">
+              <PropertyRef Name="QuyenGopID" />
+            </Principal>
+            <Dependent Role="HoGiaDinhQuyenGop">
+              <PropertyRef Name="QuyenGopID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThongKeQuyenGop_HoGiaDinhQuyenGop">
+          <End Role="HoGiaDinhQuyenGop" Type="Self.HoGiaDinhQuyenGop" Multiplicity="0..1" />
+          <End Role="ThongKeQuyenGop" Type="Self.ThongKeQuyenGop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoGiaDinhQuyenGop">
+              <PropertyRef Name="HoGiaDinhQuyenGop" />
+            </Principal>
+            <Dependent Role="ThongKeQuyenGop">
+              <PropertyRef Name="HoGiaDinhQuyenGop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThongKeThuPhiHangThang_ThuPhi">
+          <End Role="ThuPhi" Type="Self.ThuPhi" Multiplicity="0..1" />
+          <End Role="ThongKeThuPhiHangThang" Type="Self.ThongKeThuPhiHangThang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ThuPhi">
+              <PropertyRef Name="ThuPhiID" />
+            </Principal>
+            <Dependent Role="ThongKeThuPhiHangThang">
+              <PropertyRef Name="ThuPhiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThuPhi_CanBoQuanLy">
+          <End Role="CanBoQuanLy" Type="Self.CanBoQuanLy" Multiplicity="0..1" />
+          <End Role="ThuPhi" Type="Self.ThuPhi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CanBoQuanLy">
+              <PropertyRef Name="CanBoQuanLyID" />
+            </Principal>
+            <Dependent Role="ThuPhi">
+              <PropertyRef Name="CanBoQuanLyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLThuPhiQuyenGopModelStoreContainer">
+          <EntitySet Name="CanBoQuanLy" EntityType="Self.CanBoQuanLy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChiTietQuyenGop" EntityType="Self.ChiTietQuyenGop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HoGiaDinh" EntityType="Self.HoGiaDinh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HoGiaDinhQuyenGop" EntityType="Self.HoGiaDinhQuyenGop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuyenGop" EntityType="Self.QuyenGop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThongKeQuyenGop" EntityType="Self.ThongKeQuyenGop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThongKeThuPhiHangThang" EntityType="Self.ThongKeThuPhiHangThang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThuPhi" EntityType="Self.ThuPhi" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ChiTietQuyenGop_HoGiaDinhQuyenGop" Association="Self.FK_ChiTietQuyenGop_HoGiaDinhQuyenGop">
+            <End Role="HoGiaDinhQuyenGop" EntitySet="HoGiaDinhQuyenGop" />
+            <End Role="ChiTietQuyenGop" EntitySet="ChiTietQuyenGop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HoGiaDinhQuyenGop_CanBoQuanLy" Association="Self.FK_HoGiaDinhQuyenGop_CanBoQuanLy">
+            <End Role="CanBoQuanLy" EntitySet="CanBoQuanLy" />
+            <End Role="HoGiaDinhQuyenGop" EntitySet="HoGiaDinhQuyenGop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HoGiaDinhQuyenGop_HoGiaDinh" Association="Self.FK_HoGiaDinhQuyenGop_HoGiaDinh">
+            <End Role="HoGiaDinh" EntitySet="HoGiaDinh" />
+            <End Role="HoGiaDinhQuyenGop" EntitySet="HoGiaDinhQuyenGop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HoGiaDinhQuyenGop_QuyenGop" Association="Self.FK_HoGiaDinhQuyenGop_QuyenGop">
+            <End Role="QuyenGop" EntitySet="QuyenGop" />
+            <End Role="HoGiaDinhQuyenGop" EntitySet="HoGiaDinhQuyenGop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThongKeQuyenGop_HoGiaDinhQuyenGop" Association="Self.FK_ThongKeQuyenGop_HoGiaDinhQuyenGop">
+            <End Role="HoGiaDinhQuyenGop" EntitySet="HoGiaDinhQuyenGop" />
+            <End Role="ThongKeQuyenGop" EntitySet="ThongKeQuyenGop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThongKeThuPhiHangThang_ThuPhi" Association="Self.FK_ThongKeThuPhiHangThang_ThuPhi">
+            <End Role="ThuPhi" EntitySet="ThuPhi" />
+            <End Role="ThongKeThuPhiHangThang" EntitySet="ThongKeThuPhiHangThang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThuPhi_CanBoQuanLy" Association="Self.FK_ThuPhi_CanBoQuanLy">
+            <End Role="CanBoQuanLy" EntitySet="CanBoQuanLy" />
+            <End Role="ThuPhi" EntitySet="ThuPhi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLThuPhiQuyenGopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CanBoQuanLy">
+          <Key>
+            <PropertyRef Name="CanBoQuanLyID" />
+          </Key>
+          <Property Name="CanBoQuanLyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenCanBo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ChucVu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TaiKhoan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MatKhau" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HoGiaDinhQuyenGops" Relationship="Self.FK_HoGiaDinhQuyenGop_CanBoQuanLy" FromRole="CanBoQuanLy" ToRole="HoGiaDinhQuyenGop" />
+          <NavigationProperty Name="ThuPhis" Relationship="Self.FK_ThuPhi_CanBoQuanLy" FromRole="CanBoQuanLy" ToRole="ThuPhi" />
+        </EntityType>
+        <EntityType Name="ChiTietQuyenGop">
+          <Key>
+            <PropertyRef Name="ChiTietQuyenGopID" />
+          </Key>
+          <Property Name="ChiTietQuyenGopID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoGiaDinhQuyenGop" Type="Int32" />
+          <Property Name="QuyenGopID" Type="Int32" />
+          <Property Name="HoGiaDinhID" Type="Int32" />
+          <Property Name="SoTienDongGop" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="HoGiaDinhQuyenGop1" Relationship="Self.FK_ChiTietQuyenGop_HoGiaDinhQuyenGop" FromRole="ChiTietQuyenGop" ToRole="HoGiaDinhQuyenGop" />
+        </EntityType>
+        <EntityType Name="HoGiaDinh">
+          <Key>
+            <PropertyRef Name="HoGiaDinhID" />
+          </Key>
+          <Property Name="HoGiaDinhID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenChuHo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SoNhanKhau" Type="Int32" />
+          <Property Name="DiaChi" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HoGiaDinhQuyenGops" Relationship="Self.FK_HoGiaDinhQuyenGop_HoGiaDinh" FromRole="HoGiaDinh" ToRole="HoGiaDinhQuyenGop" />
+        </EntityType>
+        <EntityType Name="HoGiaDinhQuyenGop">
+          <Key>
+            <PropertyRef Name="HoGiaDinhQuyenGop1" />
+          </Key>
+          <Property Name="HoGiaDinhQuyenGop1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuyenGopID" Type="Int32" />
+          <Property Name="HoGiaDinhID" Type="Int32" />
+          <Property Name="CanBoQuanLyID" Type="Int32" />
+          <Property Name="SoTienDongGop" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="CanBoQuanLy" Relationship="Self.FK_HoGiaDinhQuyenGop_CanBoQuanLy" FromRole="HoGiaDinhQuyenGop" ToRole="CanBoQuanLy" />
+          <NavigationProperty Name="ChiTietQuyenGops" Relationship="Self.FK_ChiTietQuyenGop_HoGiaDinhQuyenGop" FromRole="HoGiaDinhQuyenGop" ToRole="ChiTietQuyenGop" />
+          <NavigationProperty Name="HoGiaDinh" Relationship="Self.FK_HoGiaDinhQuyenGop_HoGiaDinh" FromRole="HoGiaDinhQuyenGop" ToRole="HoGiaDinh" />
+          <NavigationProperty Name="QuyenGop" Relationship="Self.FK_HoGiaDinhQuyenGop_QuyenGop" FromRole="HoGiaDinhQuyenGop" ToRole="QuyenGop" />
+          <NavigationProperty Name="ThongKeQuyenGops" Relationship="Self.FK_ThongKeQuyenGop_HoGiaDinhQuyenGop" FromRole="HoGiaDinhQuyenGop" ToRole="ThongKeQuyenGop" />
+        </EntityType>
+        <EntityType Name="QuyenGop">
+          <Key>
+            <PropertyRef Name="QuyenGopID" />
+          </Key>
+          <Property Name="QuyenGopID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenVanDong" Type="Int32" />
+          <Property Name="NgayVanDong" Type="DateTime" Precision="0" />
+          <Property Name="NgayKetThuc" Type="DateTime" Precision="0" />
+          <Property Name="NoiDung" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HoGiaDinhQuyenGops" Relationship="Self.FK_HoGiaDinhQuyenGop_QuyenGop" FromRole="QuyenGop" ToRole="HoGiaDinhQuyenGop" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ThongKeQuyenGop">
+          <Key>
+            <PropertyRef Name="ThongKeQuyenGopID" />
+          </Key>
+          <Property Name="ThongKeQuyenGopID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoGiaDinhQuyenGop" Type="Int32" />
+          <Property Name="QuyenGopID" Type="Int32" />
+          <Property Name="HoGiaDinhID" Type="Int32" />
+          <Property Name="TongSoTienThu" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SoHoDaNop" Type="Int32" />
+          <NavigationProperty Name="HoGiaDinhQuyenGop1" Relationship="Self.FK_ThongKeQuyenGop_HoGiaDinhQuyenGop" FromRole="ThongKeQuyenGop" ToRole="HoGiaDinhQuyenGop" />
+        </EntityType>
+        <EntityType Name="ThongKeThuPhiHangThang">
+          <Key>
+            <PropertyRef Name="ThongKeThuPhiID" />
+          </Key>
+          <Property Name="ThongKeThuPhiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ThuPhiID" Type="Int32" />
+          <Property Name="NgayVanDong" Type="DateTime" Precision="0" />
+          <Property Name="TongSoTienThu" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SoHoDaNop" Type="Int32" />
+          <NavigationProperty Name="ThuPhi" Relationship="Self.FK_ThongKeThuPhiHangThang_ThuPhi" FromRole="ThongKeThuPhiHangThang" ToRole="ThuPhi" />
+        </EntityType>
+        <EntityType Name="ThuPhi">
+          <Key>
+            <PropertyRef Name="ThuPhiID" />
+          </Key>
+          <Property Name="ThuPhiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoGiaDinhID" Type="Int32" />
+          <Property Name="CanBoQuanLyID" Type="Int32" />
+          <Property Name="NgayThu" Type="DateTime" Precision="0" />
+          <Property Name="SoTienThuPhi" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="CanBoQuanLy" Relationship="Self.FK_ThuPhi_CanBoQuanLy" FromRole="ThuPhi" ToRole="CanBoQuanLy" />
+          <NavigationProperty Name="ThongKeThuPhiHangThangs" Relationship="Self.FK_ThongKeThuPhiHangThang_ThuPhi" FromRole="ThuPhi" ToRole="ThongKeThuPhiHangThang" />
+        </EntityType>
+        <Association Name="FK_HoGiaDinhQuyenGop_CanBoQuanLy">
+          <End Role="CanBoQuanLy" Type="Self.CanBoQuanLy" Multiplicity="0..1" />
+          <End Role="HoGiaDinhQuyenGop" Type="Self.HoGiaDinhQuyenGop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CanBoQuanLy">
+              <PropertyRef Name="CanBoQuanLyID" />
+            </Principal>
+            <Dependent Role="HoGiaDinhQuyenGop">
+              <PropertyRef Name="CanBoQuanLyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThuPhi_CanBoQuanLy">
+          <End Role="CanBoQuanLy" Type="Self.CanBoQuanLy" Multiplicity="0..1" />
+          <End Role="ThuPhi" Type="Self.ThuPhi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CanBoQuanLy">
+              <PropertyRef Name="CanBoQuanLyID" />
+            </Principal>
+            <Dependent Role="ThuPhi">
+              <PropertyRef Name="CanBoQuanLyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietQuyenGop_HoGiaDinhQuyenGop">
+          <End Role="HoGiaDinhQuyenGop" Type="Self.HoGiaDinhQuyenGop" Multiplicity="0..1" />
+          <End Role="ChiTietQuyenGop" Type="Self.ChiTietQuyenGop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoGiaDinhQuyenGop">
+              <PropertyRef Name="HoGiaDinhQuyenGop1" />
+            </Principal>
+            <Dependent Role="ChiTietQuyenGop">
+              <PropertyRef Name="HoGiaDinhQuyenGop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HoGiaDinhQuyenGop_HoGiaDinh">
+          <End Role="HoGiaDinh" Type="Self.HoGiaDinh" Multiplicity="0..1" />
+          <End Role="HoGiaDinhQuyenGop" Type="Self.HoGiaDinhQuyenGop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoGiaDinh">
+              <PropertyRef Name="HoGiaDinhID" />
+            </Principal>
+            <Dependent Role="HoGiaDinhQuyenGop">
+              <PropertyRef Name="HoGiaDinhID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HoGiaDinhQuyenGop_QuyenGop">
+          <End Role="QuyenGop" Type="Self.QuyenGop" Multiplicity="0..1" />
+          <End Role="HoGiaDinhQuyenGop" Type="Self.HoGiaDinhQuyenGop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuyenGop">
+              <PropertyRef Name="QuyenGopID" />
+            </Principal>
+            <Dependent Role="HoGiaDinhQuyenGop">
+              <PropertyRef Name="QuyenGopID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThongKeQuyenGop_HoGiaDinhQuyenGop">
+          <End Role="HoGiaDinhQuyenGop" Type="Self.HoGiaDinhQuyenGop" Multiplicity="0..1" />
+          <End Role="ThongKeQuyenGop" Type="Self.ThongKeQuyenGop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoGiaDinhQuyenGop">
+              <PropertyRef Name="HoGiaDinhQuyenGop1" />
+            </Principal>
+            <Dependent Role="ThongKeQuyenGop">
+              <PropertyRef Name="HoGiaDinhQuyenGop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThongKeThuPhiHangThang_ThuPhi">
+          <End Role="ThuPhi" Type="Self.ThuPhi" Multiplicity="0..1" />
+          <End Role="ThongKeThuPhiHangThang" Type="Self.ThongKeThuPhiHangThang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ThuPhi">
+              <PropertyRef Name="ThuPhiID" />
+            </Principal>
+            <Dependent Role="ThongKeThuPhiHangThang">
+              <PropertyRef Name="ThuPhiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLThuPhiQuyenGopEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CanBoQuanLies" EntityType="Self.CanBoQuanLy" />
+          <EntitySet Name="ChiTietQuyenGops" EntityType="Self.ChiTietQuyenGop" />
+          <EntitySet Name="HoGiaDinhs" EntityType="Self.HoGiaDinh" />
+          <EntitySet Name="HoGiaDinhQuyenGops" EntityType="Self.HoGiaDinhQuyenGop" />
+          <EntitySet Name="QuyenGops" EntityType="Self.QuyenGop" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="ThongKeQuyenGops" EntityType="Self.ThongKeQuyenGop" />
+          <EntitySet Name="ThongKeThuPhiHangThangs" EntityType="Self.ThongKeThuPhiHangThang" />
+          <EntitySet Name="ThuPhis" EntityType="Self.ThuPhi" />
+          <AssociationSet Name="FK_HoGiaDinhQuyenGop_CanBoQuanLy" Association="Self.FK_HoGiaDinhQuyenGop_CanBoQuanLy">
+            <End Role="CanBoQuanLy" EntitySet="CanBoQuanLies" />
+            <End Role="HoGiaDinhQuyenGop" EntitySet="HoGiaDinhQuyenGops" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThuPhi_CanBoQuanLy" Association="Self.FK_ThuPhi_CanBoQuanLy">
+            <End Role="CanBoQuanLy" EntitySet="CanBoQuanLies" />
+            <End Role="ThuPhi" EntitySet="ThuPhis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietQuyenGop_HoGiaDinhQuyenGop" Association="Self.FK_ChiTietQuyenGop_HoGiaDinhQuyenGop">
+            <End Role="HoGiaDinhQuyenGop" EntitySet="HoGiaDinhQuyenGops" />
+            <End Role="ChiTietQuyenGop" EntitySet="ChiTietQuyenGops" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HoGiaDinhQuyenGop_HoGiaDinh" Association="Self.FK_HoGiaDinhQuyenGop_HoGiaDinh">
+            <End Role="HoGiaDinh" EntitySet="HoGiaDinhs" />
+            <End Role="HoGiaDinhQuyenGop" EntitySet="HoGiaDinhQuyenGops" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HoGiaDinhQuyenGop_QuyenGop" Association="Self.FK_HoGiaDinhQuyenGop_QuyenGop">
+            <End Role="QuyenGop" EntitySet="QuyenGops" />
+            <End Role="HoGiaDinhQuyenGop" EntitySet="HoGiaDinhQuyenGops" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThongKeQuyenGop_HoGiaDinhQuyenGop" Association="Self.FK_ThongKeQuyenGop_HoGiaDinhQuyenGop">
+            <End Role="HoGiaDinhQuyenGop" EntitySet="HoGiaDinhQuyenGops" />
+            <End Role="ThongKeQuyenGop" EntitySet="ThongKeQuyenGops" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThongKeThuPhiHangThang_ThuPhi" Association="Self.FK_ThongKeThuPhiHangThang_ThuPhi">
+            <End Role="ThuPhi" EntitySet="ThuPhis" />
+            <End Role="ThongKeThuPhiHangThang" EntitySet="ThongKeThuPhiHangThangs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLThuPhiQuyenGopModelStoreContainer" CdmEntityContainer="QLThuPhiQuyenGopEntities">
+          <EntitySetMapping Name="CanBoQuanLies">
+            <EntityTypeMapping TypeName="QLThuPhiQuyenGopModel.CanBoQuanLy">
+              <MappingFragment StoreEntitySet="CanBoQuanLy">
+                <ScalarProperty Name="CanBoQuanLyID" ColumnName="CanBoQuanLyID" />
+                <ScalarProperty Name="TenCanBo" ColumnName="TenCanBo" />
+                <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
+                <ScalarProperty Name="TaiKhoan" ColumnName="TaiKhoan" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChiTietQuyenGops">
+            <EntityTypeMapping TypeName="QLThuPhiQuyenGopModel.ChiTietQuyenGop">
+              <MappingFragment StoreEntitySet="ChiTietQuyenGop">
+                <ScalarProperty Name="ChiTietQuyenGopID" ColumnName="ChiTietQuyenGopID" />
+                <ScalarProperty Name="HoGiaDinhQuyenGop" ColumnName="HoGiaDinhQuyenGop" />
+                <ScalarProperty Name="QuyenGopID" ColumnName="QuyenGopID" />
+                <ScalarProperty Name="HoGiaDinhID" ColumnName="HoGiaDinhID" />
+                <ScalarProperty Name="SoTienDongGop" ColumnName="SoTienDongGop" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HoGiaDinhs">
+            <EntityTypeMapping TypeName="QLThuPhiQuyenGopModel.HoGiaDinh">
+              <MappingFragment StoreEntitySet="HoGiaDinh">
+                <ScalarProperty Name="HoGiaDinhID" ColumnName="HoGiaDinhID" />
+                <ScalarProperty Name="TenChuHo" ColumnName="TenChuHo" />
+                <ScalarProperty Name="SoNhanKhau" ColumnName="SoNhanKhau" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HoGiaDinhQuyenGops">
+            <EntityTypeMapping TypeName="QLThuPhiQuyenGopModel.HoGiaDinhQuyenGop">
+              <MappingFragment StoreEntitySet="HoGiaDinhQuyenGop">
+                <ScalarProperty Name="HoGiaDinhQuyenGop1" ColumnName="HoGiaDinhQuyenGop" />
+                <ScalarProperty Name="QuyenGopID" ColumnName="QuyenGopID" />
+                <ScalarProperty Name="HoGiaDinhID" ColumnName="HoGiaDinhID" />
+                <ScalarProperty Name="CanBoQuanLyID" ColumnName="CanBoQuanLyID" />
+                <ScalarProperty Name="SoTienDongGop" ColumnName="SoTienDongGop" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuyenGops">
+            <EntityTypeMapping TypeName="QLThuPhiQuyenGopModel.QuyenGop">
+              <MappingFragment StoreEntitySet="QuyenGop">
+                <ScalarProperty Name="QuyenGopID" ColumnName="QuyenGopID" />
+                <ScalarProperty Name="TenVanDong" ColumnName="TenVanDong" />
+                <ScalarProperty Name="NgayVanDong" ColumnName="NgayVanDong" />
+                <ScalarProperty Name="NgayKetThuc" ColumnName="NgayKetThuc" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QLThuPhiQuyenGopModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThongKeQuyenGops">
+            <EntityTypeMapping TypeName="QLThuPhiQuyenGopModel.ThongKeQuyenGop">
+              <MappingFragment StoreEntitySet="ThongKeQuyenGop">
+                <ScalarProperty Name="ThongKeQuyenGopID" ColumnName="ThongKeQuyenGopID" />
+                <ScalarProperty Name="HoGiaDinhQuyenGop" ColumnName="HoGiaDinhQuyenGop" />
+                <ScalarProperty Name="QuyenGopID" ColumnName="QuyenGopID" />
+                <ScalarProperty Name="HoGiaDinhID" ColumnName="HoGiaDinhID" />
+                <ScalarProperty Name="TongSoTienThu" ColumnName="TongSoTienThu" />
+                <ScalarProperty Name="SoHoDaNop" ColumnName="SoHoDaNop" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThongKeThuPhiHangThangs">
+            <EntityTypeMapping TypeName="QLThuPhiQuyenGopModel.ThongKeThuPhiHangThang">
+              <MappingFragment StoreEntitySet="ThongKeThuPhiHangThang">
+                <ScalarProperty Name="ThongKeThuPhiID" ColumnName="ThongKeThuPhiID" />
+                <ScalarProperty Name="ThuPhiID" ColumnName="ThuPhiID" />
+                <ScalarProperty Name="NgayVanDong" ColumnName="NgayVanDong" />
+                <ScalarProperty Name="TongSoTienThu" ColumnName="TongSoTienThu" />
+                <ScalarProperty Name="SoHoDaNop" ColumnName="SoHoDaNop" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThuPhis">
+            <EntityTypeMapping TypeName="QLThuPhiQuyenGopModel.ThuPhi">
+              <MappingFragment StoreEntitySet="ThuPhi">
+                <ScalarProperty Name="ThuPhiID" ColumnName="ThuPhiID" />
+                <ScalarProperty Name="HoGiaDinhID" ColumnName="HoGiaDinhID" />
+                <ScalarProperty Name="CanBoQuanLyID" ColumnName="CanBoQuanLyID" />
+                <ScalarProperty Name="NgayThu" ColumnName="NgayThu" />
+                <ScalarProperty Name="SoTienThuPhi" ColumnName="SoTienThuPhi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

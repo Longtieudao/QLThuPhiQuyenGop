@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="154a004559c340fb8db8e42ea55157b5" Name="Diagram1" ZoomLevel="48">
+        <EntityTypeShape EntityType="QLThuPhiQuyenGopModel.CanBoQuanLy" Width="1.5" PointX="5.375" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLThuPhiQuyenGopModel.ChiTietQuyenGop" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLThuPhiQuyenGopModel.HoGiaDinh" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLThuPhiQuyenGopModel.HoGiaDinhQuyenGop" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLThuPhiQuyenGopModel.QuyenGop" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLThuPhiQuyenGopModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLThuPhiQuyenGopModel.ThongKeQuyenGop" Width="1.5" PointX="3.125" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLThuPhiQuyenGopModel.ThongKeThuPhiHangThang" Width="1.5" PointX="9.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLThuPhiQuyenGopModel.ThuPhi" Width="1.5" PointX="7.125" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="QLThuPhiQuyenGopModel.FK_HoGiaDinhQuyenGop_CanBoQuanLy" ManuallyRouted="false" />
+        <AssociationConnector Association="QLThuPhiQuyenGopModel.FK_ThuPhi_CanBoQuanLy" ManuallyRouted="false" />
+        <AssociationConnector Association="QLThuPhiQuyenGopModel.FK_ChiTietQuyenGop_HoGiaDinhQuyenGop" ManuallyRouted="false" />
+        <AssociationConnector Association="QLThuPhiQuyenGopModel.FK_HoGiaDinhQuyenGop_HoGiaDinh" ManuallyRouted="false" />
+        <AssociationConnector Association="QLThuPhiQuyenGopModel.FK_HoGiaDinhQuyenGop_QuyenGop" ManuallyRouted="false" />
+        <AssociationConnector Association="QLThuPhiQuyenGopModel.FK_ThongKeQuyenGop_HoGiaDinhQuyenGop" ManuallyRouted="false" />
+        <AssociationConnector Association="QLThuPhiQuyenGopModel.FK_ThongKeThuPhiHangThang_ThuPhi" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
